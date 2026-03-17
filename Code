@@ -1,0 +1,31 @@
+int temp_sensor=A1;
+int motor1a=2;
+int motor1b=3;
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(temp_sensor,INPUT);
+  pinMode(motor1a,OUTPUT);
+  pinMode(motor1b,OUTPUT);
+}
+void loop()
+{
+float val=analogRead(temp_sensor);
+float final_value=val*(5.0/1024)*100;
+Serial.println(final_value);  
+if(final_value>=30.0)
+{  
+ digitalWrite(motor1a,LOW);
+ digitalWrite(motor1b,HIGH);
+ Serial.println("Fan is ON");
+  delay(1000);
+}
+ else
+ {
+   digitalWrite(motor1a,LOW);
+   digitalWrite(motor1b,LOW);
+   Serial.println("Fan is OFF");
+   delay(1000);
+ }
+}
+  
